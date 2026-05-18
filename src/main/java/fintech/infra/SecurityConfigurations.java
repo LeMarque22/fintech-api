@@ -26,6 +26,7 @@ public class SecurityConfigurations {
                 // Avisa ao Spring: "Não guarde sessão na memória, nós vamos usar Tokens (Pulseira VIP)!"
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(req -> {
+                    req.requestMatchers("/v3/api-docs/**", "/v3/api-docs", "/swagger-ui.html", "/swagger-ui/**").permitAll();
                     // Porta Aberta 1: Qualquer um pode tentar fazer Login
                     req.requestMatchers(HttpMethod.POST, "/login").permitAll();
 
